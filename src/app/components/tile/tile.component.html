@@ -1,0 +1,42 @@
+<!-- TILE -->
+<div class="tile"
+     [class.mine]="isMineValue()"
+     [class.activated]="isActivatedValue()"
+     [class.disabled]="isDisabledValue()"
+     [class.revealed]="isRevealedValue()"
+     (click)="onPrimaryAction($event)"
+     (contextmenu)="onSecondaryAction($event)">
+
+    <!-- GRASS IMAGE -->
+    <img class="grass-img"
+         src="assets/images/grass.png"
+         alt="This tile has an unknown content.">
+
+    <!-- DIRT IMAGE -->
+    <img *ngIf="!surroundingMinesValue()"
+         class="dirt-img"
+         src="assets/images/dirt.png"
+         alt="This tile has no content.">
+
+    <!-- NUMBER IMAGE -->
+    <img *ngIf="surroundingMinesValue()"
+         class="number-img"
+         src="assets/images/number-{{ surroundingMinesValue() }}.png"
+         alt="This tile has {{ surroundingMinesValue() }} surrounding mines.">
+
+    <!-- MINE IMAGE -->
+    <img class="mine-img"
+         src="assets/images/mine.png"
+         alt="This tile has a mine.">
+
+    <!-- MINE ACTIVATED IMAGE -->
+    <img class="mine-activated-img"
+         src="assets/images/mine-activated.png"
+         alt="This tile has an activated mine.">
+
+    <!-- DANGER IMAGE -->
+    <img class="danger-img"
+         src="assets/images/danger.png"
+         alt="This tile is disabled.">
+
+</div>

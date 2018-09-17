@@ -1,0 +1,116 @@
+// Variables
+$cursor-default: auto;
+$cursor-enabled: crosshair;
+$cursor-enabled-custom: '../../../assets/images/shovel.cur';
+$cursor-disabled: not-allowed;
+
+// The tile
+.tile {
+
+    // Set the enabled cursor
+    cursor: url($cursor-enabled-custom) 8 24, $cursor-enabled;
+
+    // The images
+    img {
+
+        // The images
+        display: block;
+        width: 100%;
+
+        // The numbers images
+        &.number-img {
+            width: 80%;
+            margin: 10%;
+        }
+
+        // Hide the numbers, mine, mine activated and danger images
+        &:not(.grass-img) {
+            display: none;
+        }
+
+    }
+
+    // If the tile is hovered and is not revealed
+    &:hover:not(.revealed) {
+
+        // Highlight the tile
+        background-image: radial-gradient(circle, white, black);
+    }
+
+    // If the tile is revealed but not disabled
+    &.revealed:not(.disabled) {
+
+        // Show the default cursor
+        cursor: $cursor-default;
+
+        // If is not a mine
+        &:not(.mine) {
+
+            // Hide the grass image
+            .grass-img {
+                display: none;
+            }
+
+            // Show the dirt image
+            .dirt-img {
+                display: block;
+            }
+
+            // Show the number image
+            .number-img {
+                display: block;
+            }
+
+        }
+
+        // If is a mine
+        &.mine {
+
+            // Hide the grass image
+            .grass-img {
+                display: none;
+            }
+
+            // If the mine is not activated
+            &:not(.activated) {
+
+                // Show the mine image
+                .mine-img {
+                    display: block;
+                }
+
+            }
+
+            // If the mine is activated
+            &.activated {
+
+                // Show the mine activated image
+                .mine-activated-img {
+                    display: block;
+                }
+
+            }
+
+        }
+
+    }
+
+    // If the tile is disabled but not revealed
+    &.disabled:not(.revealed) {
+
+        // Show the disabled cursor
+        cursor: $cursor-disabled;
+
+        // Hide the grass image
+        .grass-img {
+            display: none;
+        }
+
+        // Show the danger image
+        .danger-img {
+            display: block;
+        }
+
+    }
+
+}
