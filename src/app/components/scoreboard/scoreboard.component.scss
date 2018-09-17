@@ -1,0 +1,63 @@
+// Variables
+$background-img: '../../../assets/images/frame.png';
+$font-src: '../../../assets/fonts/dnr.woff';
+$background-color: #FF0000;
+$border-color: #FFFF00;
+$font-color: #FF0000;
+
+// The scoreboard
+.scoreboard {
+    height: 6vh;
+    border: 2vh solid transparent;
+    border-image: url($background-img) 300 round;
+    -webkit-border-image: url($background-img) 300 round;
+    -o-border-image: url($background-img) 300 round;
+    font-family: digital;
+    line-height: 6vh;
+    font-size: 6vh;
+    color: $font-color;
+
+    // Mines left
+    .mines-left {
+        position: absolute;
+        left: 6vw;
+    }
+
+    // Reset button
+    .reset-button {
+        position: absolute;
+        left: calc(50% - 3vh);
+        width: 6vh;
+        height: 6vh;
+        padding: 0;
+        background-color: $background-color;
+        border-color: $border-color;
+
+        // While hovering
+        &:hover {
+            cursor: pointer;
+            border-color: $background-color;
+        }
+
+        // Reset image
+        .reset-img {
+            width: 5vh;
+            height: 5vh;
+            vertical-align: middle;
+        }
+
+    }
+
+    // Time elapsed
+    .time-elapsed {
+        position: absolute;
+        right: 6vw;
+    }
+
+}
+
+// Fonts
+@font-face {
+    font-family: digital;
+    src: url($font-src);
+}

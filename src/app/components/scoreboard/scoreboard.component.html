@@ -1,0 +1,31 @@
+<!-- GAME SCOREBOARD -->
+<div class="scoreboard">
+
+  <!-- MINES LEFT -->
+  <div class="mines-left">
+
+    <!-- TEXT -->
+    <span>{{ minesLeftValue() }}</span>
+
+  </div>
+
+  <!-- RESET BUTTON -->
+  <button class="reset-button"
+          (click)="onReset()">
+
+    <!-- SMILEY FACE -->
+    <img class="reset-img"
+         src="assets/images/smiley.png"
+         alt="Reset game.">
+
+  </button>
+
+  <!-- TIME ELAPSED -->
+  <div class="time-elapsed">
+
+    <!-- TEXT -->
+    <span>{{ elapsedTime }}</span>
+
+  </div>
+
+</div>

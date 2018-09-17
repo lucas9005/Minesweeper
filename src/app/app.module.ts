@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 // Components
 import { BoardComponent } from './components/board/board.component';
 import { TileComponent } from './components/tile/tile.component';
+import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
-    TileComponent
+    TileComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule

@@ -17,3 +17,11 @@ export interface MatrixCoordinates2D {
     i: number;
     j: number;
 }
+
+// Scoreboard
+export interface Scoreboard {
+    startTime: string;
+    endTime: string;
+    completed: boolean;
+    minesLeft: number;
+}
