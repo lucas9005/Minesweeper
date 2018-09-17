@@ -1,0 +1,15 @@
+<!-- MINESWEEPER GAME -->
+<div class="minesweeper">
+
+    <!-- SCOREBOARD -->
+    <app-scoreboard [scoreboard]="minesweeper.scoreboard"
+                    (reset)="onReset()">
+    </app-scoreboard>
+
+    <!-- BOARD -->
+    <app-board [board]="minesweeper.board"
+               (primaryAction)="onPrimaryAction($event)"
+               (secondaryAction)="onSecondaryAction($event)">
+    </app-board>
+
+</div>

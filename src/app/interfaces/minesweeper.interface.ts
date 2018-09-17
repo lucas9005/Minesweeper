@@ -1,3 +1,19 @@
+// Minesweeper
+export interface Minesweeper {
+    configuration: Configuration;
+    board: Board;
+    scoreboard: Scoreboard;
+    finished: boolean;
+}
+
+// Config
+export interface Configuration {
+    difficulty: number;
+    gridWidth: number;
+    gridHeight: number;
+    minesCount: number;
+}
+
 // Board
 export interface Board {
     grid: Array<Array<Tile>>;

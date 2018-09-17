@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 // Components
+import { MinesweeperComponent } from './components/minesweeper/minesweeper.component';
 import { BoardComponent } from './components/board/board.component';
 import { TileComponent } from './components/tile/tile.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
@@ -13,6 +14,7 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 @NgModule({
   declarations: [
     AppComponent,
+    MinesweeperComponent,
     BoardComponent,
     TileComponent,
     ScoreboardComponent
