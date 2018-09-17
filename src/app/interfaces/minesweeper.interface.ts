@@ -1,3 +1,8 @@
+// Board
+export interface Board {
+    grid: Array<Array<Tile>>;
+}
+
 // Tile
 export interface Tile {
     isMine: boolean;
@@ -5,4 +10,10 @@ export interface Tile {
     isDisabled: boolean;
     isRevealed: boolean;
     surroundingMines: number;
+}
+
+// 2D Matrix Coordinate
+export interface MatrixCoordinates2D {
+    i: number;
+    j: number;
 }

@@ -1,0 +1,25 @@
+<!-- GAME BOARD -->
+<table>
+
+    <!-- BOARD BODY -->
+    <tbody>
+
+        <!-- BOARD ROW -->
+        <tr *ngFor="let row of gridValue(); index as i">
+
+            <!-- BOARD COLUMN -->
+            <td *ngFor="let tile of row; index as j">
+
+                <!-- BOARD TILE -->
+                <app-tile [tile]="tile"
+                          (primaryAction)="onPrimaryAction({i: i, j: j})"
+                          (secondaryAction)="onSecondaryAction({i: i, j: j})">
+                </app-tile>
+
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>
