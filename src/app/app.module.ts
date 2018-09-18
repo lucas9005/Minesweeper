@@ -11,6 +11,9 @@ import { BoardComponent } from './components/board/board.component';
 import { TileComponent } from './components/tile/tile.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 
+// Services
+import { MinesweeperService } from './services/minesweeper.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,9 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    MinesweeperService
+  ],
   bootstrap: [
     AppComponent
   ]
