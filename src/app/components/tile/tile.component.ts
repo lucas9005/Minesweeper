@@ -47,20 +47,25 @@ export class TileComponent implements OnInit {
    */
   private _checkInputAttributes(): void {
     // Checks if tile -> isMine has a value
-    (this.isMineValue() === null)
-      ? console.error('TileComponent: Input attribute "isMine" is required.') : null;
+    if (this.isMineValue() === null) {
+      console.error('TileComponent: Input attribute "isMine" is required.');
+    }
     // Checks if tile -> isActivated has a value
-    (this.isActivatedValue() === null)
-      ? console.error('TileComponent: Input attribute "isActivated" is required.') : null;
+    if (this.isActivatedValue() === null) {
+      console.error('TileComponent: Input attribute "isActivated" is required.');
+    }
     // Checks if tile -> isDisabled has a value
-    (this.isDisabledValue() === null)
-      ? console.error('TileComponent: Input attribute "isDisabled" is required.') : null;
+    if (this.isDisabledValue() === null) {
+      console.error('TileComponent: Input attribute "isDisabled" is required.');
+    }
     // Checks if tile -> isRevealed has a value
-    (this.isRevealedValue() === null)
-      ? console.error('TileComponent: Input attribute "isRevealed" is required.') : null;
+    if (this.isRevealedValue() === null) {
+      console.error('TileComponent: Input attribute "isRevealed" is required.');
+    }
     // Checks if tile -> surroundingMines has a value
-    (this.surroundingMinesValue() === null)
-      ? console.error('TileComponent: Input attribute "surroundingMines" is required.') : null;
+    if (this.surroundingMinesValue() === null) {
+      console.error('TileComponent: Input attribute "surroundingMines" is required.');
+    }
   }
 
   /**
@@ -110,8 +115,9 @@ export class TileComponent implements OnInit {
    */
   public onPrimaryAction(event: Event): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('TileComponent: Primary Action event emmited.') : null;
+    if (this._verboseMode) {
+      console.dir('TileComponent: Primary Action event emmited.');
+    }
     // Prevents the default behavior
     event.preventDefault();
     // Emmits the event
@@ -125,8 +131,9 @@ export class TileComponent implements OnInit {
    */
   public onSecondaryAction(event: Event): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('TileComponent: Secondary Action event emmited.') : null;
+    if (this._verboseMode) {
+      console.dir('TileComponent: Secondary Action event emmited.');
+    }
     // Prevents the default behavior
     event.preventDefault();
     // Emmits the event
