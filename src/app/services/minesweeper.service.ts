@@ -23,8 +23,9 @@ export class MinesweeperService {
   // Dependencies injection
   constructor() {
     // If the verbose mode is enabled displays the service initialization message
-    (this._verboseMode)
-      ? console.dir('Initialized MinesweeperService.') : null;
+    if (this._verboseMode) {
+      console.dir('Initialized MinesweeperService.');
+    }
     // Attributes initialization
     this._verboseMode = false;
     this._secureMode = false;
@@ -44,9 +45,10 @@ export class MinesweeperService {
    */
   private _initializeConfiguration(configuration: Configuration): Configuration {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Configuration initialized.') : null;
-    // Set the configuration based on 
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Configuration initialized.');
+    }
+    // Set the configuration based on
     switch (configuration.difficulty) {
       // Beginner
       case 0:
@@ -96,8 +98,9 @@ export class MinesweeperService {
    */
   private _normalizeConfiguration(configuration: Configuration): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Configuration normalized.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Configuration normalized.');
+    }
     // Limits the grid width to integer values between 0 and 64
     configuration.gridWidth = Math.min(
       Math.max(Math.floor(configuration.gridWidth || 0), this._minGridWidth),
@@ -122,12 +125,13 @@ export class MinesweeperService {
    */
   private _initializeBoard(configuration: Configuration): Board {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Board initialized.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Board initialized.');
+    }
     // Initialize the board
     const board: Board = {
       grid: this._initializeGrid(configuration)
-    }
+    };
     // Return the board
     return board;
   }
@@ -139,10 +143,11 @@ export class MinesweeperService {
    */
   private _initializeGrid(configuration: Configuration): Board['grid'] {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Grid initialized.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Grid initialized.');
+    }
     // Initialize the grid and shadow grid
-    let grid: Board['grid'] = [];
+    const grid: Board['grid'] = [];
     // Loops the grid rows
     for (let i = 0; i < configuration.gridHeight; i++) {
       grid[i] = [];
@@ -166,8 +171,9 @@ export class MinesweeperService {
    */
   private _initializeTile(): Tile {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Tile initialized.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Tile initialized.');
+    }
     // Initialize the tile
     const tile = {
       isMine: false,
@@ -188,13 +194,14 @@ export class MinesweeperService {
    */
   private _plantMines(grid: Board['grid'], minesCount: number): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Mines planted.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Mines planted.');
+    }
     // Loops the mines
     for (let planted = 0; planted < minesCount; planted++) {
       // Search stopper condition
-      let search: boolean = true;
-      // Search randomly an empty tile until the mine is planted 
+      let search = true;
+      // Search randomly an empty tile until the mine is planted
       while (search) {
         // Generate a random position
         const randomPosition: MatrixCoordinates2D
@@ -217,8 +224,9 @@ export class MinesweeperService {
    */
   private _countSurroundingMines(tilePosition: MatrixCoordinates2D): number {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Surrounding mines counted.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Surrounding mines counted.');
+    }
     // Initialize the counter
     let surroundingMines = 0;
     // Loops the surrounding grid rows
@@ -247,8 +255,9 @@ export class MinesweeperService {
    */
   private _revealSurroundingTiles(tilePosition: MatrixCoordinates2D): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Surrounding tiles revealed.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Surrounding tiles revealed.');
+    }
     // Loops the surrounding grid rows
     for (let iOffset = -1; iOffset < 2; iOffset++) {
       // Loops the surrounding grid columns
@@ -276,8 +285,9 @@ export class MinesweeperService {
     if (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isRevealed
       && (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled || this._minesweeper.finished)) {
       // If the verbose mode is enabled
-      (this._verboseMode)
-        ? console.dir(`MinesweeperService: Tile revealed (row:${tilePosition.i}, col:${tilePosition.j}).`) : null;
+      if (this._verboseMode) {
+        console.dir(`MinesweeperService: Tile revealed (row:${tilePosition.i}, col:${tilePosition.j}).`);
+      }
       // Enable the tile
       this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled = false;
       // Reveal the tile
@@ -316,16 +326,18 @@ export class MinesweeperService {
       // If the tile is enabled
       if (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled) {
         // If the verbose mode is enabled
-        (this._verboseMode)
-          ? console.dir(`MinesweeperService: Tile disabled (row:${tilePosition.i}, col:${tilePosition.j}).`) : null;
+        if (this._verboseMode) {
+          console.dir(`MinesweeperService: Tile disabled (row:${tilePosition.i}, col:${tilePosition.j}).`);
+        }
         // Set the tile as disabled
         this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled = true;
         // Subtract one to the mines left
         --this._minesweeper.scoreboard.minesLeft;
       } else {
         // If the verbose mode is enabled
-        (this._verboseMode)
-          ? console.dir(`MinesweeperService: Tile enabled (row:${tilePosition.i}, col:${tilePosition.j}).`) : null;
+        if (this._verboseMode) {
+          console.dir(`MinesweeperService: Tile enabled (row:${tilePosition.i}, col:${tilePosition.j}).`);
+        }
         // Set the tile as enabled
         this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled = false;
         // Add one to the mines left
@@ -341,8 +353,9 @@ export class MinesweeperService {
    */
   private _initializeScoreboard(configuration: Configuration): Scoreboard {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Scoreboard initialized.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Scoreboard initialized.');
+    }
     // Initialize the scoreboard
     const scoreboard = {
       startTime: null,
@@ -368,8 +381,9 @@ export class MinesweeperService {
    */
   private _startGame(): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Game started.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Game started.');
+    }
     // Set the game start time
     this._minesweeper.scoreboard.startTime = new Date().toISOString();
   }
@@ -380,8 +394,9 @@ export class MinesweeperService {
    */
   private _endGame(): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Game ended.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Game ended.');
+    }
     // Set the game as finished
     this._minesweeper.finished = true;
     // Set the game end time
@@ -405,8 +420,9 @@ export class MinesweeperService {
    */
   public initializeGame(configuration: Configuration): Minesweeper {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Game initialized.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Game initialized.');
+    }
     // Initialize the game
     this._minesweeper = {
       configuration: this._initializeConfiguration(configuration),
@@ -425,8 +441,9 @@ export class MinesweeperService {
    */
   public revealTile(tilePosition: MatrixCoordinates2D): Minesweeper {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Game updated.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Game updated.');
+    }
     // If the game isn't started
     if (!this._isGameStarted()) {
       // Start the game
@@ -445,8 +462,9 @@ export class MinesweeperService {
    */
   public toggleTileDisabledState(tilePosition: MatrixCoordinates2D): Minesweeper {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperService: Game updated.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperService: Game updated.');
+    }
     // Toggle the tile disabled state
     this._toggleTileDisabledState(tilePosition);
     // Return the game (Deep Clone in Safe Mode)
