@@ -57,8 +57,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
    */
   private _checkInputAttributes(): void {
     // Checks if scoreboard -> minesLeft has a value
-    (this.minesLeftValue() === null)
-      ? console.error('ScoreboardComponent: Input attribute "minesLeft" is required.') : null;
+    if (this.minesLeftValue() === null) {
+      console.error('ScoreboardComponent: Input attribute "minesLeft" is required.');
+    }
   }
 
   /**
@@ -69,8 +70,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
     // If the game has started
     if (this.startTimeValue()) {
       // If the verbose mode is enabled
-      (this._verboseMode)
-        ? console.dir('ScoreboardComponent: Elapsed time updated.') : null;
+      if (this._verboseMode) {
+        console.dir('ScoreboardComponent: Elapsed time updated.');
+      }
       // Set the start time or current time
       const startTime: number = this._getDate(this.startTimeValue()).getTime();
       // Set the end time or current time
@@ -131,8 +133,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
    */
   public onReset(): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('ScoreboardComponent: Reset event emitted.') : null;
+    if (this._verboseMode) {
+      console.dir('ScoreboardComponent: Reset event emitted.');
+    }
     // Emmits the event
     this.reset.emit();
   }
