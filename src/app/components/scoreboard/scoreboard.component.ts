@@ -17,7 +17,7 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
   public elapsedTime: number;
 
   // Input attributes
-  @Input() private scoreboard: Scoreboard;
+  @Input() public scoreboard: Scoreboard;
 
   // Output events
   @Output() private reset: EventEmitter<void>;
