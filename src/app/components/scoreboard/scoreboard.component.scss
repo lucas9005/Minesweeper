@@ -8,10 +8,10 @@ $font-color: #FF0000;
 // The scoreboard
 .scoreboard {
     height: 6vh;
-    border: 2vh solid transparent;
-    border-image: url($background-img) 300 round;
-    -webkit-border-image: url($background-img) 300 round;
-    -o-border-image: url($background-img) 300 round;
+    border-bottom: 8px solid transparent;
+    border-image: url($background-img) 155 round;
+    -webkit-border-image: url($background-img) 155 round;
+    -o-border-image: url($background-img) 155 round;
     font-family: digital;
     line-height: 6vh;
     font-size: 6vh;
@@ -20,7 +20,7 @@ $font-color: #FF0000;
     // Mines left
     .mines-left {
         position: absolute;
-        left: 6vw;
+        left: 32px;
     }
 
     // Reset button
@@ -51,7 +51,7 @@ $font-color: #FF0000;
     // Time elapsed
     .time-elapsed {
         position: absolute;
-        right: 6vw;
+        right: 32px;
     }
 
 }
