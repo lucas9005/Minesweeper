@@ -42,8 +42,9 @@ export class MinesweeperComponent implements OnInit {
    */
   private _initializeGame(): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperComponent: Requesting game initialization.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperComponent: Requesting game initialization.');
+    }
     // Initializes the game
     this.minesweeper = this.minesweeperService.initializeGame({ difficulty: 3, gridWidth: 50, gridHeight: 50, minesCount: 200 });
   }
@@ -54,8 +55,9 @@ export class MinesweeperComponent implements OnInit {
    */
   public onReset(): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('MinesweeperComponent: Requesting game update for reset event.') : null;
+    if (this._verboseMode) {
+      console.dir('MinesweeperComponent: Requesting game update for reset event.');
+    }
     // Initialize the game
     this._initializeGame();
   }
@@ -67,8 +69,9 @@ export class MinesweeperComponent implements OnInit {
    */
   public onPrimaryAction(tilePosition: MatrixCoordinates2D): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir(`MinesweeperComponent: Requesting game update for primaryAction event (row:${tilePosition.i}, col:${tilePosition.j}).`) : null;
+    if (this._verboseMode) {
+      console.dir(`MinesweeperComponent: Requesting game update for primaryAction event (row:${tilePosition.i}, col:${tilePosition.j}).`);
+    }
     // Reveal the tile
     this.minesweeper = this.minesweeperService.revealTile(tilePosition);
   }
@@ -80,8 +83,9 @@ export class MinesweeperComponent implements OnInit {
    */
   public onSecondaryAction(tilePosition: MatrixCoordinates2D): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir(`MinesweeperComponent: Requesting game update for secondaryAction event (row:${tilePosition.i}, col:${tilePosition.j}).`) : null;
+    if (this._verboseMode) {
+      console.dir(`MinesweeperComponent: Requesting game update for secondaryAction event (row:${tilePosition.i}, col:${tilePosition.j}).`);
+    }
     // Toggle the tile disabled state
     this.minesweeper = this.minesweeperService.toggleTileDisabledState(tilePosition);
   }
