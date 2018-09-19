@@ -1,6 +1,17 @@
 // Angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Angular Material
+import { MatButtonModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
+import { MatListModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
+
+// Routers
+import { AppRouterModule } from './app.router';
 
 // Entry component
 import { AppComponent } from './app.component';
@@ -23,7 +34,14 @@ import { MinesweeperService } from './services/minesweeper.service';
     ScoreboardComponent
   ],
   imports: [
-    BrowserModule
+    AppRouterModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   providers: [
     MinesweeperService
