@@ -1,19 +1,28 @@
+// Angular
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+// Components
 import { TileComponent } from './tile.component';
 
+// Test
 describe('TileComponent', () => {
   let component: TileComponent;
   let fixture: ComponentFixture<TileComponent>;
 
+  // Before each run
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TileComponent]
-    })
-      .compileComponents();
+    // Configure
+    TestBed.configureTestingModule(
+      {
+        declarations: [
+          TileComponent
+        ]
+      }
+    ).compileComponents();
   }));
 
+  // Before each run
   beforeEach(() => {
     // Initialize
     fixture = TestBed.createComponent(TileComponent);
@@ -30,7 +39,7 @@ describe('TileComponent', () => {
     fixture.detectChanges();
   });
 
-  // Should show the component
+  // Should create the component
   it('should create', () => {
     // Assert
     expect(component).toBeTruthy();
