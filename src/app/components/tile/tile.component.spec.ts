@@ -25,7 +25,7 @@ describe('TileComponent', () => {
       isDisabled: false,
       isRevealed: false,
       surroundingMines: null
-    }
+    };
     // Update the component
     fixture.detectChanges();
   });
