@@ -47,8 +47,9 @@ export class BoardComponent implements OnInit {
    */
   private _checkInputAttributes(): void {
     // Checks if board -> grid has a value
-    (this.gridValue() === null)
-      ? console.error('BoardComponent: Input attribute "grid" is required.') : null;
+    if (this.gridValue() === null) {
+      console.error('BoardComponent: Input attribute "grid" is required.');
+    }
   }
 
   /**
@@ -66,8 +67,9 @@ export class BoardComponent implements OnInit {
    */
   public onPrimaryAction(tilePosition: MatrixCoordinates2D): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('BoardComponent: Primary Action event forwarded.') : null;
+    if (this._verboseMode) {
+      console.dir('BoardComponent: Primary Action event forwarded.');
+    }
     // Emmits the event
     this.primaryAction.emit(tilePosition);
   }
@@ -79,8 +81,9 @@ export class BoardComponent implements OnInit {
    */
   public onSecondaryAction(tilePosition: MatrixCoordinates2D): void {
     // If the verbose mode is enabled
-    (this._verboseMode)
-      ? console.dir('BoardComponent: Secondary Action event forwarded.') : null;
+    if (this._verboseMode) {
+      console.dir('BoardComponent: Secondary Action event forwarded.');
+    }
     // Emmits the event
     this.secondaryAction.emit(tilePosition);
   }
