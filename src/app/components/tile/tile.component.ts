@@ -15,7 +15,7 @@ export class TileComponent implements OnInit {
   private _verboseMode: boolean;
 
   // Input attributes
-  @Input() private tile: Tile;
+  @Input() public tile: Tile;
 
   // Output events
   @Output() private primaryAction: EventEmitter<void>;
