@@ -15,7 +15,7 @@ export class BoardComponent implements OnInit {
   private _verboseMode: boolean;
 
   // Input attributes
-  @Input() private board: Board;
+  @Input() public board: Board;
 
   // Output events
   @Output() private primaryAction: EventEmitter<MatrixCoordinates2D>;
