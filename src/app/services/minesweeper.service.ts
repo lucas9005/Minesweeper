@@ -347,7 +347,7 @@ export class MinesweeperService {
     const scoreboard = {
       startTime: null,
       endTime: null,
-      completed: false,
+      completed: null,
       minesLeft: configuration.minesCount,
     };
     // Return the scoreboard
