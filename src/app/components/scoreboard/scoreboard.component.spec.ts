@@ -54,10 +54,10 @@ describe('ScoreboardComponent', () => {
 
   // Mines left count should be greater than or equal to 0
   it('mines left count should be greater than or equal to 0', () => {
-    // Get the mines left inner element
-    const minesLeftInner = fixture.debugElement.query(By.css('.mines-left span'));
+    // Get the mines left element
+    const minesLeft = fixture.nativeElement.querySelector('.mines-left');
     // Get the count
-    const count = minesLeftInner.nativeElement.innerHTML;
+    const count = minesLeft.textContent;
     // Assert
     expect(count).toBeGreaterThanOrEqual(0);
   });
@@ -65,7 +65,7 @@ describe('ScoreboardComponent', () => {
   // Should show the reset button
   it('should show the reset button', () => {
     // Get the reset button element
-    const resetButton = fixture.debugElement.query(By.css('.reset-button'));
+    const resetButton = fixture.nativeElement.querySelector('.reset-button');
     // Assert
     expect(resetButton).toBeTruthy();
   });
@@ -73,7 +73,7 @@ describe('ScoreboardComponent', () => {
   // Should show the time elapsed count
   it('should show the time elapsed count', () => {
     // Get the time elapsed element
-    const timeElapsed = fixture.debugElement.query(By.css('.time-elapsed'));
+    const timeElapsed = fixture.nativeElement.querySelector('.time-elapsed');
     // Assert
     expect(timeElapsed).toBeTruthy();
   });
@@ -81,9 +81,9 @@ describe('ScoreboardComponent', () => {
   // Time elapsed count should be greater than or equal to 0
   it('time elapsed count should be greater than or equal to 0', () => {
     // Get the time elapsed inner element
-    const timeElapsedInner = fixture.debugElement.query(By.css('.time-elapsed span'));
+    const timeElapsedInner = fixture.nativeElement.querySelector('.time-elapsed span');
     // Get the count
-    const count = timeElapsedInner.nativeElement.innerHTML;
+    const count = timeElapsedInner.textContent;
     // Assert
     expect(count).toBeGreaterThanOrEqual(0);
   });
