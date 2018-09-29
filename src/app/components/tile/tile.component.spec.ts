@@ -48,7 +48,7 @@ describe('TileComponent', () => {
   // Should show the grass image
   it('should show the grass image', () => {
     // Get the grass image element
-    const grassImg = fixture.debugElement.query(By.css('.grass-img'));
+    const grassImg = fixture.nativeElement.querySelector('.grass-img');
     // Assert
     expect(grassImg).toBeTruthy();
   });
@@ -56,7 +56,7 @@ describe('TileComponent', () => {
   // Should show the dirt image
   it('should show the dirt image', () => {
     // Get the dirt image element
-    const dirtImg = fixture.debugElement.query(By.css('.dirt-img'));
+    const dirtImg = fixture.nativeElement.querySelector('.dirt-img');
     // Assert
     expect(dirtImg).toBeTruthy();
   });
@@ -64,7 +64,7 @@ describe('TileComponent', () => {
   // Should show the mine image
   it('should show the mine image', () => {
     // Get the mine image element
-    const mineImg = fixture.debugElement.query(By.css('.mine-img'));
+    const mineImg = fixture.nativeElement.querySelector('.mine-img');
     // Assert
     expect(mineImg).toBeTruthy();
   });
@@ -76,7 +76,7 @@ describe('TileComponent', () => {
     // Update the component
     fixture.detectChanges();
     // Get the number image element
-    const numberImg = fixture.debugElement.query(By.css('.number-img'));
+    const numberImg = fixture.nativeElement.querySelector('.number-img');
     // Assert
     expect(numberImg).toBeTruthy();
   });
@@ -84,7 +84,7 @@ describe('TileComponent', () => {
   // Should show the mine activated image
   it('should show the mine activated image', () => {
     // Get the mine activated image element
-    const mineActivatedImg = fixture.debugElement.query(By.css('.mine-activated-img'));
+    const mineActivatedImg = fixture.nativeElement.querySelector('.mine-activated-img');
     // Assert
     expect(mineActivatedImg).toBeTruthy();
   });
@@ -92,7 +92,7 @@ describe('TileComponent', () => {
   // Should show the danger image
   it('should show the danger image', () => {
     // Get the danger image element
-    const dangerImg = fixture.debugElement.query(By.css('.danger-img'));
+    const dangerImg = fixture.nativeElement.querySelector('.danger-img');
     // Assert
     expect(dangerImg).toBeTruthy();
   });
