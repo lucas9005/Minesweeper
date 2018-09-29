@@ -47,7 +47,7 @@ describe('ScoreboardComponent', () => {
   // Should show the mines left count
   it('should show the mines left count', () => {
     // Get the mines left element
-    const minesLeft = fixture.debugElement.query(By.css('.mines-left'));
+    const minesLeft = fixture.nativeElement.querySelector('.mines-left');
     // Assert
     expect(minesLeft).toBeTruthy();
   });
