@@ -1,20 +1,19 @@
 // Variables
-$background-img: '../../../assets/images/frame.png';
+$border-img: '../../../assets/images/frame.png';
 $font-src: '../../../assets/fonts/dnr.woff';
-$background-color: #FF0000;
-$border-color: #FFFF00;
 $font-color: #FF0000;
+$cursor-hovered: pointer;
 
 // The scoreboard
 .scoreboard {
     height: 6vh;
     border-bottom: 8px solid transparent;
-    border-image: url($background-img) 155 round;
-    -webkit-border-image: url($background-img) 155 round;
-    -o-border-image: url($background-img) 155 round;
+    border-image: url($border-img) 155 round;
+    -webkit-border-image: url($border-img) 155 round;
+    -o-border-image: url($border-img) 155 round;
     font-family: digital;
     line-height: 6vh;
-    font-size: 6vh;
+    font-size: 5vh;
     color: $font-color;
 
     // Mines left
@@ -26,24 +25,22 @@ $font-color: #FF0000;
     // Reset button
     .reset-button {
         position: absolute;
-        left: calc(50% - 3vh);
-        width: 6vh;
-        height: 6vh;
-        padding: 0;
-        background-color: $background-color;
-        border-color: $border-color;
+        left: calc(50% - 3.5vh);
+        border-radius: 50%;
+        line-height: 0;
+        padding: 0.25vh;
 
         // While hovering
         &:hover {
-            cursor: pointer;
-            border-color: $background-color;
+            cursor: $cursor-hovered;
+            background-image: radial-gradient(circle, white, black);
         }
 
         // Reset image
         .reset-img {
-            width: 5vh;
-            height: 5vh;
-            vertical-align: middle;
+            width: 5.5vh;
+            height: 5.5vh;
+            border-radius: 50%;
         }
 
     }
