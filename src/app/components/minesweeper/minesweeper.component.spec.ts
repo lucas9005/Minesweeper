@@ -52,7 +52,7 @@ describe('MinesweeperComponent', () => {
   // Should show the game scoreboard
   it('should show the game scoreboard', () => {
     // Get the game scoreboard element
-    const gameScoreboard = fixture.debugElement.query(By.css('app-scoreboard'));
+    const gameScoreboard = fixture.nativeElement.querySelector('app-scoreboard');
     // Assert
     expect(gameScoreboard).toBeTruthy();
   });
@@ -60,7 +60,7 @@ describe('MinesweeperComponent', () => {
   // Should show the game board
   it('should show the game board', () => {
     // Get the game board element
-    const gameBoard = fixture.debugElement.query(By.css('app-board'));
+    const gameBoard = fixture.nativeElement.querySelector('app-board');
     // Assert
     expect(gameBoard).toBeTruthy();
   });
