@@ -1,0 +1,71 @@
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- TOOLBAR CONTAINER -->
+  <mat-toolbar color="primary"
+               class="toolbar">
+
+    <!-- SIDENAV TOGGLE BUTTON -->
+    <button mat-icon-button
+            class="toggle-button"
+            (click)="sidenav.toggle()">
+
+      <!-- BUTTON ICON -->
+      <mat-icon>
+        menu
+      </mat-icon>
+
+    </button>
+
+    <!-- TOOLBAR TITLE -->
+    <h1 class="title">
+      Minesweeper
+    </h1>
+
+  </mat-toolbar>
+
+  <!-- SIDENAV CONTAINER -->
+  <mat-sidenav-container class="sidenav-container">
+
+    <!-- SIDENAV -->
+    <mat-sidenav #sidenav
+                 mode="over"
+                 class="sidenav">
+
+      <!-- SIDENAV LIST -->
+      <mat-nav-list *ngFor="let routeItem of routesList"
+                    class="sidenav-list">
+
+        <!-- LIST ITEM -->
+        <mat-list-item [routerLink]="routeItem.routerLink"
+                       routerLinkActive="active"
+                       class="sidenav-item">
+
+          <!-- ITEM ICON -->
+          <mat-icon matListIcon
+                    color="primary">
+            {{ routeItem.icon }}
+          </mat-icon>
+
+          <!-- ITEM LABEL -->
+          <p>
+            {{ routeItem.label }}
+          </p>
+
+        </mat-list-item>
+
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <!-- SIDENAV CONTENT -->
+    <mat-sidenav-content class="sidenav-content">
+
+      <!-- ROUTER OUTLET -->
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

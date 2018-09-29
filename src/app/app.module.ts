@@ -17,6 +17,7 @@ import { AppRouterModule } from './app.router';
 import { AppComponent } from './app.component';
 
 // Components
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { MinesweeperComponent } from './components/minesweeper/minesweeper.component';
 import { BoardComponent } from './components/board/board.component';
 import { TileComponent } from './components/tile/tile.component';
@@ -28,6 +29,7 @@ import { MinesweeperService } from './services/minesweeper.service';
 @NgModule({
   declarations: [
     AppComponent,
+    MainLayoutComponent,
     MinesweeperComponent,
     BoardComponent,
     TileComponent,

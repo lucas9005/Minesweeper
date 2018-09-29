@@ -1,0 +1,68 @@
+// Variables
+$background-color: #000000;
+
+// MAIN LAYOUT
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    // TOOLBAR CONTAINER
+    .toolbar {
+
+        // TOGGLE BUTTON
+        .toggle-button {
+            
+        }
+
+        // TITLE
+        .title {
+            margin-left: 16px;
+        }
+
+    }
+
+    // SIDENAV CONTAINER
+    .sidenav-container {
+        background-color: $background-color;
+        flex: 1;
+
+        // SIDENAV
+        .sidenav {
+            min-width: 15vw;
+
+            // SIDENAV LIST
+            .sidenav-list {
+                padding: 0;
+
+                // LIST ITEM
+                .sidenav-item {
+
+                    // ITEM TEXT
+                    p {
+                        margin-right: 8px;
+                    }
+
+                    // AND ACTIVE
+                    &.active {
+                        background-color: rgba(0, 0, 0, 0.14);
+                    }
+
+                }
+
+            }
+
+        }
+
+        // SIDENAV CONTENT
+        .sidenav-content {
+            
+        }
+
+    }
+
+}
