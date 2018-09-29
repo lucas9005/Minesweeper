@@ -79,7 +79,7 @@ describe('BoardComponent', () => {
   // Should show the game board
   it('should show the game board', () => {
     // Get the game board element
-    const gameBoard = fixture.debugElement.query(By.css('table tbody'));
+    const gameBoard = fixture.nativeElement.querySelector('table tbody');
     // Assert
     expect(gameBoard).toBeTruthy();
   });
@@ -87,7 +87,7 @@ describe('BoardComponent', () => {
   // Game board rows count should be equal to 2
   it('game board rows count should be equal to 2', () => {
     // Get the game board rows element
-    const gameBoardRows = fixture.debugElement.query(By.css('table tbody'));
+    const gameBoardRows = fixture.nativeElement.querySelector('table tbody');
     // Get the count
     const count = gameBoardRows.children.length;
     // Assert
@@ -97,7 +97,7 @@ describe('BoardComponent', () => {
   // Game board columns count should be equal to 2
   it('game board columns count should be equal to 2', () => {
     // Get the game board columns element
-    const gameBoardColumns = fixture.debugElement.query(By.css('table tbody tr'));
+    const gameBoardColumns = fixture.nativeElement.querySelector('table tbody tr');
     // Get the count
     const count = gameBoardColumns.children.length;
     // Assert
