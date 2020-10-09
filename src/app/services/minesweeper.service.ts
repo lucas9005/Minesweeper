@@ -54,31 +54,31 @@ export class MinesweeperService {
       case 0:
         configuration.gridWidth = 8;
         configuration.gridHeight = 8;
-        configuration.minesCount = 5;
+        configuration.minesCount = 6;
         break;
       // Easy
       case 1:
-        configuration.gridWidth = 8;
+        configuration.gridWidth = 16;
         configuration.gridHeight = 8;
-        configuration.minesCount = 10;
+        configuration.minesCount = 12;
         break;
       // Normal
       case 2:
         configuration.gridWidth = 16;
         configuration.gridHeight = 16;
-        configuration.minesCount = 40;
+        configuration.minesCount = 38;
         break;
       // Hard
       case 3:
         configuration.gridWidth = 32;
         configuration.gridHeight = 16;
-        configuration.minesCount = 99;
+        configuration.minesCount = 102;
         break;
-      // Very hard
+      // Expert
       case 4:
         configuration.gridWidth = 32;
-        configuration.gridHeight = 16;
-        configuration.minesCount = 120;
+        configuration.gridHeight = 32;
+        configuration.minesCount = 204;
         break;
       // Custom
       default:
@@ -218,7 +218,7 @@ export class MinesweeperService {
   }
 
   /**
-   * Count the surrounding mines
+   * Counts the surrounding mines
    * @param {MatrixCoordinates2D} tilePosition The tile position
    * @returns {number} The count
    */
@@ -281,17 +281,19 @@ export class MinesweeperService {
    * @returns {void} Void
    */
   private _revealTile(tilePosition: MatrixCoordinates2D): void {
-    // If the tile is not revealed and disabled or if the tile is not revealed and the game is finished
+    // If the tile is not revealed and not disabled or the game is finished
     if (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isRevealed
       && (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled || this._minesweeper.finished)) {
       // If the verbose mode is enabled
       if (this._verboseMode) {
         console.dir(`MinesweeperService: Tile revealed (row:${tilePosition.i}, col:${tilePosition.j}).`);
       }
-      // Enable the tile
+      // Set the tile as enabled
       this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isDisabled = false;
-      // Reveal the tile
+      // Set the tile as revealed
       this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isRevealed = true;
+      // Subtract one to the tiles to reveal left
+      --this._minesweeper.scoreboard.tilesToRevealLeft;
       // If the tile is a mine
       if (this._shadowGrid[tilePosition.i][tilePosition.j].isMine) {
         // Set the tile as a mine
@@ -301,15 +303,20 @@ export class MinesweeperService {
           // Activate the mine
           this._minesweeper.board.grid[tilePosition.i][tilePosition.j].isActivated = true;
           // End the game
-          this._endGame();
+          this._endGame(false);
         }
       } else {
-        // Count the surrounding mines
-        this._minesweeper.board.grid[tilePosition.i][tilePosition.j].surroundingMines = this._countSurroundingMines(tilePosition);
-        // If the tile has no surrounding mines
-        if (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].surroundingMines) {
-          // Reveal the surrounding tiles
-          this._revealSurroundingTiles(tilePosition);
+        if (this._minesweeper.scoreboard.tilesToRevealLeft === 0) {
+          // End the game
+          this._endGame(true);
+        } else {
+          // Count the surrounding mines
+          this._minesweeper.board.grid[tilePosition.i][tilePosition.j].surroundingMines = this._countSurroundingMines(tilePosition);
+          // If the tile has no surrounding mines
+          if (!this._minesweeper.board.grid[tilePosition.i][tilePosition.j].surroundingMines) {
+            // Reveal the surrounding tiles
+            this._revealSurroundingTiles(tilePosition);
+          }
         }
       }
     }
@@ -362,6 +369,7 @@ export class MinesweeperService {
       endTime: null,
       completed: null,
       minesLeft: configuration.minesCount,
+      tilesToRevealLeft: configuration.gridWidth * configuration.gridHeight - configuration.minesCount
     };
     // Return the scoreboard
     return scoreboard;
@@ -390,9 +398,10 @@ export class MinesweeperService {
 
   /**
    * Ends the game
+   * @param {boolean} completed The game completed status
    * @returns {void} Void
    */
-  private _endGame(): void {
+  private _endGame(completed: boolean): void {
     // If the verbose mode is enabled
     if (this._verboseMode) {
       console.dir('MinesweeperService: Game ended.');
@@ -401,8 +410,8 @@ export class MinesweeperService {
     this._minesweeper.finished = true;
     // Set the game end time
     this._minesweeper.scoreboard.endTime = new Date().toISOString();
-    // Set the game as uncompleted
-    this._minesweeper.scoreboard.completed = false;
+    // Set the game completed status
+    this._minesweeper.scoreboard.completed = completed;
     // Loops the grid rows
     for (let i = 0; i < this._minesweeper.board.grid.length; i++) {
       // Loops the grid columns

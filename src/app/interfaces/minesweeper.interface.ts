@@ -40,4 +40,5 @@ export interface Scoreboard {
     endTime: string;
     completed: boolean;
     minesLeft: number;
+    tilesToRevealLeft: number;
 }
