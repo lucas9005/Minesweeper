@@ -1,11 +1,11 @@
-// Angular imports
+// Angular
 import { Component, OnInit } from '@angular/core';
 
-// Types imports
+// Types
 import { Minesweeper, MatrixCoordinates2D } from '../../interfaces/minesweeper.interface';
 
 // Services
-import { MinesweeperService } from '../../services/minesweeper.service';
+import { MinesweeperService } from '../../services/game/minesweeper.service';
 
 @Component({
   selector: 'app-minesweeper',
@@ -46,7 +46,7 @@ export class MinesweeperComponent implements OnInit {
       console.dir('MinesweeperComponent: Requesting game initialization.');
     }
     // Initializes the game
-    this.minesweeper = this.minesweeperService.initializeGame({ difficulty: 3, gridWidth: 50, gridHeight: 50, minesCount: 200 });
+    this.minesweeper = this.minesweeperService.initializeGame();
   }
 
   /**

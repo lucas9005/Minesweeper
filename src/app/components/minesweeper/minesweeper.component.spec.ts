@@ -1,6 +1,8 @@
 // Angular
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+
+// Angular Material
+import { MatCardModule } from '@angular/material';
 
 // Components
 import { MinesweeperComponent } from '../../components/minesweeper/minesweeper.component';
@@ -9,7 +11,7 @@ import { TileComponent } from '../../components/tile/tile.component';
 import { ScoreboardComponent } from '../../components/scoreboard/scoreboard.component';
 
 // Services
-import { MinesweeperService } from '../../services/minesweeper.service';
+import { MinesweeperService } from '../../services/game/minesweeper.service';
 
 // Test
 describe('MinesweeperComponent', () => {
@@ -26,6 +28,9 @@ describe('MinesweeperComponent', () => {
           BoardComponent,
           TileComponent,
           ScoreboardComponent
+        ],
+        imports: [
+          MatCardModule
         ],
         providers: [
           MinesweeperService

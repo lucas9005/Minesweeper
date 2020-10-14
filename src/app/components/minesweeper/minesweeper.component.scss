@@ -1,11 +1,18 @@
 // Variables
 $background-img: '../../../assets/images/frame.png';
+$margin: 16px;
 
 // Minesweeper game
 .minesweeper {
-    margin: 16px;
+    width: fit-content;
+    margin: $margin auto;
     border: 8px solid transparent;
     border-image: url($background-img) 155 round;
     -webkit-border-image: url($background-img) 155 round;
     -o-border-image: url($background-img) 155 round;
+
+    // Card
+    mat-card {
+        padding: 0;
+    }
 }

@@ -1,15 +1,23 @@
 <!-- MINESWEEPER GAME -->
 <div class="minesweeper">
 
-    <!-- SCOREBOARD -->
-    <app-scoreboard [scoreboard]="minesweeper.scoreboard"
-                    (reset)="onReset()">
-    </app-scoreboard>
+    <!-- CARD -->
+    <mat-card>
 
-    <!-- BOARD -->
-    <app-board [board]="minesweeper.board"
-               (primaryAction)="onPrimaryAction($event)"
-               (secondaryAction)="onSecondaryAction($event)">
-    </app-board>
+        <!-- CONTENT -->
+        <mat-card-content>
+
+            <!-- SCOREBOARD -->
+            <app-scoreboard [scoreboard]="minesweeper.scoreboard" (reset)="onReset()">
+            </app-scoreboard>
+
+            <!-- BOARD -->
+            <app-board [board]="minesweeper.board" (primaryAction)="onPrimaryAction($event)"
+                (secondaryAction)="onSecondaryAction($event)">
+            </app-board>
+
+        </mat-card-content>
+
+    </mat-card>
 
 </div>
