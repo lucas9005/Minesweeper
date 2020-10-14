@@ -1,6 +1,5 @@
 // Angular
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 // Components
 import { ScoreboardComponent } from './scoreboard.component';
@@ -32,7 +31,8 @@ describe('ScoreboardComponent', () => {
       startTime: null,
       endTime: null,
       completed: null,
-      minesLeft: 0
+      minesLeft: 0,
+      tilesToRevealLeft: 0
     };
     // Update the component
     fixture.detectChanges();

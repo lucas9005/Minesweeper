@@ -1,7 +1,7 @@
-// Angular imports
+// Angular
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 
-// Types imports
+// Types
 import { Scoreboard } from '../../interfaces/minesweeper.interface';
 
 @Component({
