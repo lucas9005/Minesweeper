@@ -4,13 +4,26 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components
 import { MinesweeperComponent } from './components/minesweeper/minesweeper.component';
-import { TileComponent } from './components/tile/tile.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 
 const appRoutes: Routes = [
     // Routes
     {
         path: 'game',
         component: MinesweeperComponent
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent
+    },
+    {
+        path: 'ranking',
+        redirectTo: '/under-construction'
+    },
+    {
+        path: 'under-construction',
+        component: UnderConstructionComponent
     },
     // Redirections
     {
