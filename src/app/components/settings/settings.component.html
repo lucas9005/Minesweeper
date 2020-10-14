@@ -1,0 +1,85 @@
+<!-- SETTINGS -->
+<div class="settings">
+
+  <!-- CARD -->
+  <mat-card>
+
+    <!-- HEADER -->
+    <mat-card-header>
+
+      <!-- TITLE -->
+      <mat-card-title>Game Settings</mat-card-title>
+
+    </mat-card-header>
+
+    <!-- CONTENT -->
+    <mat-card-content>
+
+      <form [formGroup]="settingsForm">
+
+        <!-- DIFFICULTY SELECTOR -->
+        <mat-form-field [appearance]="'fill'">
+          <mat-label>Difficulty</mat-label>
+          <mat-select [formControlName]="'difficulty'">
+            <mat-option [value]="0">Beginner</mat-option>
+            <mat-option [value]="1">Easy</mat-option>
+            <mat-option [value]="2">Normal</mat-option>
+            <mat-option [value]="3">Hard</mat-option>
+            <mat-option [value]="4">Expert</mat-option>
+            <mat-option [value]="5">Custom</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+        <!-- CUSTOM SETTINGS -->
+        <div *ngIf="settingsForm.get('difficulty').value === 5">
+
+          <!-- WIDTH INPUT -->
+          <mat-form-field [appearance]="'fill'">
+            <mat-label>Width</mat-label>
+            <input matInput type="number" [formControlName]="'gridWidth'">
+            <mat-hint align="start"><strong>Max 64 tiles wide</strong> </mat-hint>
+            <mat-hint align="end">{{ settingsForm.get('gridWidth').value }}/64</mat-hint>
+          </mat-form-field>
+          <br>
+
+          <!-- HEIGHT INPUT -->
+          <mat-form-field [appearance]="'fill'">
+            <mat-label>Height</mat-label>
+            <input matInput type="number" [formControlName]="'gridHeight'">
+            <mat-hint align="start"><strong>Max 32 tiles high</strong> </mat-hint>
+            <mat-hint align="end">{{ settingsForm.get('gridHeight').value }}/32</mat-hint>
+          </mat-form-field>
+          <br>
+
+          <!-- MINES INPUT -->
+          <mat-form-field [appearance]="'fill'">
+            <mat-label>Mines</mat-label>
+            <input matInput type="number" [formControlName]="'minesCount'">
+            <mat-hint align="start">
+              <strong>Max {{ settingsForm.get('gridWidth').value*settingsForm.get('gridHeight').value }} mines planted</strong>
+            </mat-hint>
+            <mat-hint align="end">
+              {{ settingsForm.get('gridWidth').value }}/{{ settingsForm.get('gridWidth').value*settingsForm.get('gridHeight').value }}
+            </mat-hint>
+          </mat-form-field>
+
+        </div>
+
+      </form>
+
+    </mat-card-content>
+
+    <!-- ACTIONS -->
+    <mat-card-actions [align]="'end'">
+
+      <!-- SAVE BUTTON -->
+      <button mat-flat-button [color]="'primary'" [disabled]="!settingsForm.valid" (click)="onSaveSettings()">
+        Save
+      </button>
+
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>
