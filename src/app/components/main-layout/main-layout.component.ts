@@ -1,7 +1,7 @@
-// Angular imports
+// Angular
 import { Component, OnInit, Input } from '@angular/core';
 
-// Types imports
+// Types
 import { Route } from '../../interfaces/router.interface';
 
 @Component({

@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material';
@@ -10,6 +10,11 @@ import { MatIconModule } from '@angular/material';
 import { MatListModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material';
 
 // Routers
 import { AppRouterModule } from '../../app.router';
@@ -20,6 +25,8 @@ import { MinesweeperComponent } from '../minesweeper/minesweeper.component';
 import { BoardComponent } from '../board/board.component';
 import { TileComponent } from '../tile/tile.component';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
+import { SettingsComponent } from '../settings/settings.component';
+import { UnderConstructionComponent } from '../under-construction/under-construction.component';
 
 // Test
 describe('MainLayoutComponent', () => {
@@ -36,16 +43,24 @@ describe('MainLayoutComponent', () => {
           MinesweeperComponent,
           BoardComponent,
           TileComponent,
-          ScoreboardComponent
+          ScoreboardComponent,
+          SettingsComponent,
+          UnderConstructionComponent
         ],
         imports: [
           AppRouterModule,
           BrowserAnimationsModule,
+          ReactiveFormsModule,
           MatButtonModule,
           MatIconModule,
           MatListModule,
           MatSidenavModule,
-          MatToolbarModule
+          MatToolbarModule,
+          MatFormFieldModule,
+          MatSelectModule,
+          MatInputModule,
+          MatCardModule,
+          MatSnackBarModule
         ],
         providers: [
           {
@@ -70,19 +85,14 @@ describe('MainLayoutComponent', () => {
         label: 'Game'
       },
       {
-        routerLink: '',
+        routerLink: '/settings',
         icon: 'settings',
         label: 'Settings'
       },
       {
-        routerLink: '',
+        routerLink: '/ranking',
         icon: 'list_alt',
         label: 'Ranking'
-      },
-      {
-        routerLink: '',
-        icon: 'info',
-        label: 'About'
       }
     ];
     // Update the component
