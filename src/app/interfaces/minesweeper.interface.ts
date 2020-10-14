@@ -1,13 +1,13 @@
 // Minesweeper
 export interface Minesweeper {
-    configuration: Configuration;
+    settings: Settings;
     board: Board;
     scoreboard: Scoreboard;
     finished: boolean;
 }
 
-// Config
-export interface Configuration {
+// Settings
+export interface Settings {
     difficulty: number;
     gridWidth: number;
     gridHeight: number;

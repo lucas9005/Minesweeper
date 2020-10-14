@@ -1,8 +1,11 @@
-// Angular imports
+// Angular
 import { Injectable } from '@angular/core';
 
-// Types imports
-import { Minesweeper, Configuration, Board, Tile, MatrixCoordinates2D, Scoreboard } from '../interfaces/minesweeper.interface';
+// Types
+import { Minesweeper, Settings, Board, Tile, MatrixCoordinates2D, Scoreboard } from '../../interfaces/minesweeper.interface';
+
+// Services
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +16,15 @@ export class MinesweeperService {
   private _verboseMode: boolean;
   private _secureMode: boolean;
   private _minesweeper: Minesweeper;
-  private _minGridWidth: Configuration['gridWidth'];
-  private _maxGridWidth: Configuration['gridWidth'];
-  private _minGridHeight: Configuration['gridWidth'];
-  private _maxGridHeight: Configuration['gridWidth'];
-  private _minMinesCount: Configuration['minesCount'];
+  private _minGridWidth: Settings['gridWidth'];
+  private _maxGridWidth: Settings['gridWidth'];
+  private _minGridHeight: Settings['gridWidth'];
+  private _maxGridHeight: Settings['gridWidth'];
+  private _minMinesCount: Settings['minesCount'];
   private _shadowGrid: Board['grid'];
 
   // Dependencies injection
-  constructor() {
+  constructor(private settingsService: SettingsService) {
     // If the verbose mode is enabled displays the service initialization message
     if (this._verboseMode) {
       console.dir('Initialized MinesweeperService.');
@@ -39,98 +42,98 @@ export class MinesweeperService {
   }
 
   /**
-   * Initializes the configuration
-   * @param {Configuration} configuration The game configuration
-   * @returns {Configuration} The game configuration
+   * Initializes the settings
+   * @param {Settings} settings The game settings
+   * @returns {Settings} The game settings
    */
-  private _initializeConfiguration(configuration: Configuration): Configuration {
+  private _initializeSettings(settings: Settings): Settings {
     // If the verbose mode is enabled
     if (this._verboseMode) {
-      console.dir('MinesweeperService: Configuration initialized.');
+      console.dir('MinesweeperService: Settings initialized.');
     }
-    // Set the configuration based on
-    switch (configuration.difficulty) {
+    // Sets the settings based on difficulty
+    switch (settings.difficulty) {
       // Beginner
       case 0:
-        configuration.gridWidth = 8;
-        configuration.gridHeight = 8;
-        configuration.minesCount = 6;
+        settings.gridWidth = 8;
+        settings.gridHeight = 8;
+        settings.minesCount = 6;
         break;
       // Easy
       case 1:
-        configuration.gridWidth = 16;
-        configuration.gridHeight = 8;
-        configuration.minesCount = 12;
+        settings.gridWidth = 16;
+        settings.gridHeight = 8;
+        settings.minesCount = 12;
         break;
       // Normal
       case 2:
-        configuration.gridWidth = 16;
-        configuration.gridHeight = 16;
-        configuration.minesCount = 38;
+        settings.gridWidth = 16;
+        settings.gridHeight = 16;
+        settings.minesCount = 38;
         break;
       // Hard
       case 3:
-        configuration.gridWidth = 32;
-        configuration.gridHeight = 16;
-        configuration.minesCount = 102;
+        settings.gridWidth = 32;
+        settings.gridHeight = 16;
+        settings.minesCount = 102;
         break;
       // Expert
       case 4:
-        configuration.gridWidth = 32;
-        configuration.gridHeight = 32;
-        configuration.minesCount = 204;
+        settings.gridWidth = 32;
+        settings.gridHeight = 32;
+        settings.minesCount = 204;
         break;
       // Custom
       default:
         // Overwrite is not required
         break;
     }
-    // Normalize the configuration
-    this._normalizeConfiguration(configuration);
-    // Return the configuration
-    return configuration;
+    // Normalize the settings
+    this._normalizeSettings(settings);
+    // Return the settings
+    return settings;
   }
 
   /**
-   * Normalizes the configuration
-   * @param {Configuration} configuration The game configuration
+   * Normalizes the settings
+   * @param {Settings} settings The game settings
    * @returns {void} Void
    */
-  private _normalizeConfiguration(configuration: Configuration): void {
+  private _normalizeSettings(settings: Settings): void {
     // If the verbose mode is enabled
     if (this._verboseMode) {
-      console.dir('MinesweeperService: Configuration normalized.');
+      console.dir('MinesweeperService: Settings normalized.');
     }
     // Limits the grid width to integer values between 0 and 64
-    configuration.gridWidth = Math.min(
-      Math.max(Math.floor(configuration.gridWidth || 0), this._minGridWidth),
+    settings.gridWidth = Math.min(
+      Math.max(Math.floor(settings.gridWidth || 0), this._minGridWidth),
       this._maxGridWidth
     );
     // Limits the grid height to integer values between 0 and 32
-    configuration.gridHeight = Math.min(
-      Math.max(Math.floor(configuration.gridHeight || 0), this._minGridHeight),
+    settings.gridHeight = Math.min(
+      Math.max(Math.floor(settings.gridHeight || 0), this._minGridHeight),
       this._maxGridHeight
     );
     // Limits the mines count to integer values between 0 and the grid size
-    configuration.minesCount = Math.min(
-      Math.max(Math.floor(configuration.minesCount || 0), this._minMinesCount),
-      configuration.gridWidth * configuration.gridHeight
+    settings.minesCount = Math.min(
+      Math.max(Math.floor(settings.minesCount || 0), this._minMinesCount),
+      settings.gridWidth * settings.gridHeight
     );
   }
 
   /**
    * Initializes the game board
-   * @param {Configuration} configuration The game configuration
+   * @param {Settings} settings The game settings
    * @returns {Board} The board
    */
-  private _initializeBoard(configuration: Configuration): Board {
+  private _initializeBoard(settings: Settings): Board {
     // If the verbose mode is enabled
     if (this._verboseMode) {
       console.dir('MinesweeperService: Board initialized.');
     }
     // Initialize the board
     const board: Board = {
-      grid: this._initializeGrid(configuration)
+      grid: this._initializeGrid(settings)
     };
     // Return the board
     return board;
@@ -138,10 +141,10 @@ export class MinesweeperService {
 
   /**
    * Initializes the grid
-   * @param {Configuration} configuration The game configuration
+   * @param {Settings} settings The game settings
    * @returns {Board['grid']} The grid
    */
-  private _initializeGrid(configuration: Configuration): Board['grid'] {
+  private _initializeGrid(settings: Settings): Board['grid'] {
     // If the verbose mode is enabled
     if (this._verboseMode) {
       console.dir('MinesweeperService: Grid initialized.');
@@ -149,10 +152,10 @@ export class MinesweeperService {
     // Initialize the grid and shadow grid
     const grid: Board['grid'] = [];
     // Loops the grid rows
-    for (let i = 0; i < configuration.gridHeight; i++) {
+    for (let i = 0; i < settings.gridHeight; i++) {
       grid[i] = [];
       // Loops the row columns
-      for (let j = 0; j < configuration.gridWidth; j++) {
+      for (let j = 0; j < settings.gridWidth; j++) {
         // Add the tile
         grid[i][j] = this._initializeTile();
       }
@@ -160,7 +163,7 @@ export class MinesweeperService {
     // Set the shadow grid (Deep Clone in Safe Mode)
     this._shadowGrid = (this._secureMode) ? JSON.parse(JSON.stringify(grid)) : grid;
     // Plant the mines in the shadow grid
-    this._plantMines(this._shadowGrid, configuration.minesCount);
+    this._plantMines(this._shadowGrid, settings.minesCount);
     // Return the grid
     return grid;
   }
@@ -355,10 +358,10 @@ export class MinesweeperService {
 
   /**
    * Initializes the game scoreboard
-   * @param {Configuration} configuration The game configuration
+   * @param {Settings} settings The game settings
    * @returns {Scoreboard} The scoreboard
    */
-  private _initializeScoreboard(configuration: Configuration): Scoreboard {
+  private _initializeScoreboard(settings: Settings): Scoreboard {
     // If the verbose mode is enabled
     if (this._verboseMode) {
       console.dir('MinesweeperService: Scoreboard initialized.');
@@ -368,8 +371,8 @@ export class MinesweeperService {
       startTime: null,
       endTime: null,
       completed: null,
-      minesLeft: configuration.minesCount,
-      tilesToRevealLeft: configuration.gridWidth * configuration.gridHeight - configuration.minesCount
+      minesLeft: settings.minesCount,
+      tilesToRevealLeft: settings.gridWidth * settings.gridHeight - settings.minesCount
     };
     // Return the scoreboard
     return scoreboard;
@@ -424,19 +427,20 @@ export class MinesweeperService {
 
   /**
    * Initializes the game
-   * @param {Configuration} configuration The game configuration
    * @returns {Minesweeper} The game
    */
-  public initializeGame(configuration: Configuration): Minesweeper {
+  public initializeGame(): Minesweeper {
     // If the verbose mode is enabled
     if (this._verboseMode) {
       console.dir('MinesweeperService: Game initialized.');
     }
+    // Gets the game settings
+    const settings: Settings = this.settingsService.getSettings();
     // Initialize the game
     this._minesweeper = {
-      configuration: this._initializeConfiguration(configuration),
-      board: this._initializeBoard(JSON.parse(JSON.stringify(configuration))),
-      scoreboard: this._initializeScoreboard(JSON.parse(JSON.stringify(configuration))),
+      settings: this._initializeSettings(settings),
+      board: this._initializeBoard(JSON.parse(JSON.stringify(settings))),
+      scoreboard: this._initializeScoreboard(JSON.parse(JSON.stringify(settings))),
       finished: false
     };
     // Return the game (Deep Clone in Safe Mode)
