@@ -1,0 +1,21 @@
+// Variables
+$background-img: '../../../assets/images/under_construction.png';
+$border-img: '../../../assets/images/frame.png';
+$margin: 16px;
+
+// Under construction
+.under-construction {
+    width: 50%;
+    height: 50%;
+    margin: $margin auto;
+    background-image: url($background-img);
+    -webkit-background-image: url($background-img);
+    -o-background-image: url($background-img);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 8px solid transparent;
+    border-image: url($border-img) 155 round;
+    -webkit-border-image: url($border-img) 155 round;
+    -o-border-image: url($border-img) 155 round;
+}
