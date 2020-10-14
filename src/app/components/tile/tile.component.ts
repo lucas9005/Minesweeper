@@ -1,7 +1,7 @@
-// Angular imports
+// Angular
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-// Types imports
+// Types
 import { Tile } from '../../interfaces/minesweeper.interface';
 
 @Component({
