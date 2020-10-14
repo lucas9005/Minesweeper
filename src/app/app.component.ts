@@ -1,7 +1,7 @@
 // Angular
 import { Component, OnInit } from '@angular/core';
 
-// Types imports
+// Types
 import { Route } from './interfaces/router.interface';
 
 @Component({
@@ -45,11 +45,6 @@ export class AppComponent implements OnInit {
         routerLink: '/ranking',
         icon: 'list_alt',
         label: 'Ranking'
-      },
-      {
-        routerLink: '/about',
-        icon: 'info',
-        label: 'About'
       }
     ];
   }
